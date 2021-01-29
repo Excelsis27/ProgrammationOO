@@ -2,8 +2,11 @@
 Cours 420-2C6-JR, groupe 101
 
 # Auteur
-Joseph-André Lapointe Decoste
+Joseph-AndrÃ© Lapointe Decoste
 
 
 
 Email change test.
+
+
+Pull'd
