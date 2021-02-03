@@ -1,5 +1,6 @@
 ﻿// Notre premier programme en C#
 using System;
+using System.Text;
 
 class Program
 {
@@ -247,5 +248,49 @@ class Program
         {
             Console.WriteLine("La chaine ne contient pas " + aChercher);
         }
+
+        int index = maChaine.IndexOf("de");
+        Console.WriteLine("Index de \"de\": " + index);
+
+        // On demande de recherche à partir de la position (index + 1)
+        index = maChaine.IndexOf("de", index + 1);
+        Console.WriteLine("Index de \"de\": " + index);
+
+        // IndexOf retourne -1 si la sous-chaine n'est pas trouvée
+        index = maChaine.IndexOf("de", index + 1);
+        Console.WriteLine("Index de \"de\": " + index);
+
+        // Recherche à partir de la fin
+        index = maChaine.LastIndexOf("de");
+        Console.WriteLine("Index de \"de\": " + index);
+
+        // Extrait une sous-chaine, à partir de la position 4, d'une longueur de 6 caractères
+        string sousChaine = maChaine.Substring(4, 6);
+        Console.WriteLine("Sous chaine: " + sousChaine);
+
+        Console.WriteLine("Versions tout en majuscule: " + maChaine.ToUpper());
+
+        Console.WriteLine("|{0,-10}|{0,10}|{1,8}|{2,6:D3}|{2:D2}|{3,12}|{3}|", "allo", 12, 5, 34.56789);
+
+        maChaine = "bonjour le monde";
+        // Le StringBuilder conserve une copie de la chaine qui peut être modifiée
+        StringBuilder builder = new StringBuilder(maChaine);
+
+        builder[0] = 'B';
+        builder.Append(" !");
+        builder.Append(123); // Append accepte (presque) tous les types
+        // On insère la chaine donnée à la position 8
+        builder.Insert(8, "abcdefg");
+        // Supprime 2 caractères à partir de la position 13
+        builder.Remove(13, 2);
+        builder.Replace("abcde", "tout");
+        builder.Replace(" ", ", ");
+
+        maChaine = builder.ToString();
+        Console.WriteLine(maChaine);
+
+        StringBuilder builder2 = new StringBuilder();
+        builder2.AppendFormat("|{0,-10}|{0,10}|{1,8}|{2,6:D3}|{2:D2}|{3,12}|{3}|", "allo", 12, 5, 34.56789);
+        Console.WriteLine(builder2); // Peut mettre directement la variable de type StringBuilder
     }
 }
