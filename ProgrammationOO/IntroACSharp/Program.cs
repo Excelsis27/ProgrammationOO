@@ -3,6 +3,8 @@ using System;
 using System.Text;  // StringBuilder
 using System.IO;    // Fichiers
 
+using Astronomie;
+// using Chimie; // Pas possible, va créer un conflit avec using Astronomie
 class Program
 {
     static void Main()
@@ -12,13 +14,15 @@ class Program
         //TestDeValeurs();
         //TestTableau();
         //TestChaineDeCaracteres();
-        TestFichiers();
+        //TestFichiers();
+        //TestDeNamespaces();
+        Grep();
 
         Console.Write("Appuyez sur une touche pour continuer");
         Console.ReadKey();
     }
 
-    #region Controles
+    //#region Controles
     static void TestDeBase()
     {
         // Writeline inclut le changement de ligne
@@ -124,9 +128,9 @@ class Program
                 break;
         }
     }
-    #endregion
+    //#endregion
 
-    #region FonctionDeTestsDeValeurs
+    //#region FonctionDeTestsDeValeurs
     static void TestDeValeurs()
     {
         int nombre1;
@@ -158,7 +162,7 @@ class Program
         valeur2 += 100;
         valeur3 = (valeur2 + 3) % 7;
     }
-    #endregion
+    //#endregion
 
     static void TestTableau()
     {
@@ -343,5 +347,76 @@ class Program
         {
             fichierEcriture.WriteLine("Une ligne ajoutée");
         }
+    }
+
+    static void TestDeNamespaces()
+    {
+        // On peut spécifier le nom complet
+        Console.WriteLine("Mercure en astronomie: " + Astronomie.Mercure.Description());
+        Console.WriteLine("Mercure en mythologie: " + Mythologie.Mercure.Description());
+        Console.WriteLine("Mercure en chimie: " + Chimie.Mercure.Description());
+
+        Console.WriteLine("Mercure par défaut: " + Mercure.Description());
+    }
+
+
+    // --------------------------------------------------------------------------
+    // EXERCICE 1
+
+    // Recherche dans un fichier le texte donné par l'utilisateur
+    // Affiche le numéro des lignes ainsi que les lignes contenant le texte donné
+    // À la fin, affiche le nombre de lignes dans lesquelles le texte est trouvé
+    //
+    // Exemple:
+    // --------
+    // Entrez le texte à rechercher: notion
+    //  9: Un langage de programmation offre un ensemble de notions qui peuvent etre
+    // 12: qu'il y ait un minimum de notions qui peuvent etre combinees selon des
+    // 41: ensemble de notions qui peuvent etre utilisees pour exprimer une solution
+    //
+    // Texte touvé dans 3 lignes
+    // --------
+    //
+    // Recommence tant qu'une ligne non-vide est donnée
+    static void Grep()
+    {
+        // TODO: Recommencer tant qu'une ligne non-vide est donnée
+
+        Console.Write("Entrez le texte à rechercher: ");
+        string aChercher = Console.ReadLine();
+        // Rechercher va afficher les lignes avec leur numéro dans lesquelles le texte est trouvé
+        int nombreDeLignes = Rechercher(aChercher, "prog.txt");
+        Console.WriteLine("\nTexte touvé dans {0} ligne{1}\n", nombreDeLignes, (nombreDeLignes > 1 ? "s" : ""));
+    }
+
+    // Recherche le texte donné dans le fichier portant le nom donné.
+    // Affiche les lignes avec leur numéro dans lesquelles le texte est trouvé.
+    // Retourne le nombre de lignes contenant le texte cherché.
+
+    // TODO: Écrire la méthode "Rechercher"
+
+    static int Rechercher(string aChercher, string nomFichier)
+    {
+        int nombreLignes = 0;
+
+        using (StreamReader fichierLecture = new StreamReader(nomFichier))
+        {
+            // Lit une ligne du fichier
+            // Le \n n'est pas inclus
+            string ligne = fichierLecture.ReadLine();
+
+            
+            // null est retourné lorsque la fin du fichier est atteinte
+            while (ligne != null)
+            {
+               
+                
+                // Lire la prochaine ligne
+
+                ligne = fichierLecture.ReadLine();
+            }
+        }
+
+        return nombreLignes;
     }
 }

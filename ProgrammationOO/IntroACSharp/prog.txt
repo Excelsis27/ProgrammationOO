@@ -1,0 +1,59 @@
+Un langage de programmation offre un cadre pour elaborer des algorithmes
+et exprimer des diagrammes de flux. Il permet en particulier de decrire
+les structures des donnees qui seront manipulees par l'appareil
+informatique et quelles seront les manipulations. Un langage de
+programmation sert de moyen de communication avec l'ordinateur mais aussi
+entre programmeurs : les programmes etant d'ordinaire ecrits, lus et
+modifies par une equipe de programmeurs.
+
+Un langage de programmation offre un ensemble de notions qui peuvent etre
+utilisees comme primitives pour developper des algorithmes. Les
+programmeurs apprecient que le langage soit clair, simple, et unifie,
+qu'il y ait un minimum de notions qui peuvent etre combinees selon des
+regles simples et regulieres. Les qualites d'un langage de programmation
+influent sur la facilite avec laquelle les programmes pourront etre
+ecrits, testes, puis plus tard compris et modifies.
+
+Les langages de programmation offrent differentes possibilites
+d'abstraction, et une notation proche de l'algebre, permettant de
+decrire de maniere concise et facile a saisir les operations de
+manipulation de donnees et l'evolution du deroulement du programme en
+fonction des situations. Cette possibilite d'ecriture abstraite libere
+l'esprit du programmeur d'un travail superflu, et lui permet de se
+concentrer sur des problemes plus avances.
+
+La facilite d'utilisation, la portabilite et la clarte sont des
+qualites appreciees des langages de programmation. La facilite
+d'utilisation, qui depend de la syntaxe, du vocabulaire et des
+symboles, influence la lisibilite des programmes ecrits dans ce langage
+et la duree d'apprentissage. La portabilite permet a un programme ecrit
+pour etre execute par une plateforme informatique donnee (un systeme
+d'exploitation) d'etre transfere en vue d'etre execute sur une
+autre plateforme.
+
+Un paradigme est une facon d'approcher la programmation. Chaque paradigme
+amene sa philosophie de la programmation; une fois qu'une solution a ete
+imaginee par un programmeur selon un certain paradigme, un langage de
+programmation qui suit ce paradigme permettra de l'exprimer. Imperatif,
+declaratif, fonctionnel, logique, oriente objet, concurrent, visuel,
+evenementiel, et base web sont des paradigmes de programmation. Chaque
+langage de programmation reflete un ou plusieurs paradigmes, apportant un
+ensemble de notions qui peuvent etre utilisees pour exprimer une solution
+a un probleme de programmation. Au cours de l'histoire, les scientifiques
+et les programmeurs ont identifie les avantages et les limitations d'un
+style de programmation et apporte de nouveaux styles. La plupart des
+langages de programmation contemporains permettent d'adopter plusieurs
+paradigmes de programmation a condition que ceux-ci soient compatibles.
+
+La programmation orientee objet (POO), ou programmation par objet, est un
+paradigme de programmation informatique. Il consiste en la definition et
+l'interaction de briques logicielles appelees objets; un objet represente
+un concept, une idee ou toute entite du monde physique, comme une voiture,
+une personne ou encore une page d'un livre. Il possede une structure
+interne et un comportement, et il sait interagir avec ses pairs. Il s'agit
+donc de representer ces objets et leurs relations; l'interaction entre les
+objets via leurs relations permet de concevoir et realiser les
+fonctionnalites attendues, de mieux resoudre le ou les problemes. Des lors,
+l'etape de modelisation revet une importance majeure et necessaire pour la
+POO. C'est elle qui permet de transcrire les elements du reel sous forme
+virtuelle.
