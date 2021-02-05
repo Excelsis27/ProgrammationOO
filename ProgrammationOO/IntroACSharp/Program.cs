@@ -1,6 +1,7 @@
 ﻿// Notre premier programme en C#
 using System;
-using System.Text;
+using System.Text;  // StringBuilder
+using System.IO;    // Fichiers
 
 class Program
 {
@@ -10,13 +11,14 @@ class Program
         //TestDeControles();
         //TestDeValeurs();
         //TestTableau();
-        TestChaineDeCaracteres();
+        //TestChaineDeCaracteres();
+        TestFichiers();
 
         Console.Write("Appuyez sur une touche pour continuer");
         Console.ReadKey();
     }
 
-
+    #region Controles
     static void TestDeBase()
     {
         // Writeline inclut le changement de ligne
@@ -122,7 +124,9 @@ class Program
                 break;
         }
     }
+    #endregion
 
+    #region FonctionDeTestsDeValeurs
     static void TestDeValeurs()
     {
         int nombre1;
@@ -135,6 +139,7 @@ class Program
         ModifierValeurs(ref nombre1, ref nombre2, ref nombre3);
         Console.WriteLine("Valeurs modifiées: " + nombre1 + ", " + nombre2 + ", " + nombre3);
     }
+
     static void ObtenirValeurs(out int valeur1, out int valeur2, out int valeur3)
     {
         valeur1 = 17;
@@ -153,6 +158,7 @@ class Program
         valeur2 += 100;
         valeur3 = (valeur2 + 3) % 7;
     }
+    #endregion
 
     static void TestTableau()
     {
@@ -292,5 +298,50 @@ class Program
         StringBuilder builder2 = new StringBuilder();
         builder2.AppendFormat("|{0,-10}|{0,10}|{1,8}|{2,6:D3}|{2:D2}|{3,12}|{3}|", "allo", 12, 5, 34.56789);
         Console.WriteLine(builder2); // Peut mettre directement la variable de type StringBuilder
+
+        int taille = 12;
+        string[] tableau = new string[taille];
+    }
+
+    static void TestFichiers()
+    {
+        string nomFichier = "test.txt";
+
+        // Écriture dans un fichier
+        // Va créer le fichier s'il n'existe, va l'écraser s'il existe
+        // StreamWriter(nomFichier, true)   --> va ajouter à la fin si le fichier existe
+        using (StreamWriter fichierEcriture = new StreamWriter(nomFichier))
+        {
+            fichierEcriture.WriteLine("Du texte pour tester");
+            fichierEcriture.WriteLine("l'écriture dans une fichier\n\n");
+            fichierEcriture.Write("qui pourra être");
+            fichierEcriture.WriteLine(" lu par la suite");
+        }
+
+        Console.WriteLine("Écriture dans le fichier terminée.");
+        Console.ReadKey(true); // true pour ne pas afficher la touche lue
+
+        // Lecture dans un fichier
+        using (StreamReader fichierLecture = new StreamReader(nomFichier))
+        {
+            // Lit une ligne du fichier
+            // Le \n n'est pas inclus
+            string ligne = fichierLecture.ReadLine();
+
+            // null est retourné lorsque la fin du fichier est atteinte
+            while (ligne != null)
+            {
+                Console.WriteLine(ligne);
+
+                // Lire la prochaine ligne
+
+                ligne = fichierLecture.ReadLine();
+            }
+        }
+
+        using (StreamWriter fichierEcriture = new StreamWriter(nomFichier, true))
+        {
+            fichierEcriture.WriteLine("Une ligne ajoutée");
+        }
     }
 }
