@@ -17,6 +17,7 @@ class Program
         //TestFichiers();
         //TestDeNamespaces();
         Grep();
+        //EnleverLignesVidesEtCommentaires("Program.cs");
 
         Console.Write("Appuyez sur une touche pour continuer");
         Console.ReadKey();
@@ -359,7 +360,7 @@ class Program
         Console.WriteLine("Mercure par défaut: " + Mercure.Description());
     }
 
-
+    #region excercice 1
     // --------------------------------------------------------------------------
     // EXERCICE 1
 
@@ -384,9 +385,15 @@ class Program
 
         Console.Write("Entrez le texte à rechercher: ");
         string aChercher = Console.ReadLine();
-        // Rechercher va afficher les lignes avec leur numéro dans lesquelles le texte est trouvé
-        int nombreDeLignes = Rechercher(aChercher, "prog.txt");
-        Console.WriteLine("\nTexte touvé dans {0} ligne{1}\n", nombreDeLignes, (nombreDeLignes > 1 ? "s" : ""));
+        while (aChercher.Contains(""))
+        {
+            // Rechercher va afficher les lignes avec leur numéro dans lesquelles le texte est trouvé
+            int nombreDeLignes = Rechercher(aChercher, "prog.txt");
+            Console.WriteLine("\nTexte touvé dans {0} ligne{1}\n", nombreDeLignes, (nombreDeLignes > 1 ? "s" : ""));
+
+            Console.Write("Entrez le texte à rechercher: ");
+            aChercher = Console.ReadLine();
+        }
     }
 
     // Recherche le texte donné dans le fichier portant le nom donné.
@@ -397,26 +404,84 @@ class Program
 
     static int Rechercher(string aChercher, string nomFichier)
     {
-        int nombreLignes = 0;
+        int nbLigneTrouvee = 0;
 
         using (StreamReader fichierLecture = new StreamReader(nomFichier))
         {
             // Lit une ligne du fichier
             // Le \n n'est pas inclus
             string ligne = fichierLecture.ReadLine();
-
-            
+            int nbLigneTotal = 1;
             // null est retourné lorsque la fin du fichier est atteinte
             while (ligne != null)
             {
-               
-                
-                // Lire la prochaine ligne
+                if (ligne.Contains(aChercher))
+                {
+                    Console.WriteLine("{0,2}: {1}", nbLigneTotal, ligne);
+                    nbLigneTrouvee++;
+                }
 
+                // Lire la prochaine ligne
                 ligne = fichierLecture.ReadLine();
+                ++nbLigneTotal;
             }
         }
 
-        return nombreLignes;
+        return nbLigneTrouvee;
     }
+    #endregion
+
+    #region exercice 2
+    // --------------------------------------------------------------------------
+    // EXERCICE 2
+
+    // Lit un fichier contenant du code C# (.cs)
+    // Crée un nouveau fichier en ajoutant "SansCommentaires" au nom donné.
+    // (Par exemple, si le nom du fichier donné est "Program.cs", le fichier
+    //  créé sera "ProgramSansCommentaires.cs")
+    // Copie le contenu du fichier donné dans le nouveau fichier, sans inclure:
+    //  - les commentaires (ne tient compte que des //, ne supporte pas les /**/)
+    //  - les lignes vides ou ne contenant que des espaces
+    static void EnleverLignesVidesEtCommentaires(string nomDuFichier)
+    {
+        string nouveauNomDuFichier = Path.GetFileNameWithoutExtension(nomDuFichier);
+        nouveauNomDuFichier += "SansCommentaire.cs";
+
+        using (StreamReader r = new StreamReader(nomDuFichier))
+        {
+            string ligne = r.ReadLine();
+
+            while (ligne != null)
+            {
+                if (!ligne.Contains("//"))
+                {
+                    using (StreamWriter w = new StreamWriter(nouveauNomDuFichier, true))
+                    {
+                        w.WriteLine(ligne);
+                    }
+                }
+                else
+                {
+                    StringBuilder sb = new StringBuilder(ligne);
+
+                    int index = ligne.IndexOf("//");
+                    int index2 = ligne.Length;
+                    sb.Remove(index, index2);
+                    /*
+                    using (StreamWriter w = new StreamWriter(nouveauNomDuFichier, true))
+                    {
+                        w.WriteLine(sb);
+                    }*/
+
+                    Console.WriteLine(ligne.Length);
+                }
+
+                ligne = r.ReadLine();
+            }
+
+
+        }
+
+    }
+    #endregion
 }
