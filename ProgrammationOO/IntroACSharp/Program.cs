@@ -16,8 +16,8 @@ class Program
         //TestChaineDeCaracteres();
         //TestFichiers();
         //TestDeNamespaces();
-        Grep();
-        //EnleverLignesVidesEtCommentaires("Program.cs");
+        //Grep();
+        EnleverLignesVidesEtCommentaires("Program.cs");
 
         Console.Write("Appuyez sur une touche pour continuer");
         Console.ReadKey();
@@ -360,7 +360,7 @@ class Program
         Console.WriteLine("Mercure par défaut: " + Mercure.Description());
     }
 
-    #region excercice 1
+    #region exercice 1
     // --------------------------------------------------------------------------
     // EXERCICE 1
 
@@ -444,42 +444,35 @@ class Program
     //  - les lignes vides ou ne contenant que des espaces
     static void EnleverLignesVidesEtCommentaires(string nomDuFichier)
     {
-        string nouveauNomDuFichier = Path.GetFileNameWithoutExtension(nomDuFichier);
-        nouveauNomDuFichier += "SansCommentaire.cs";
+        string nouveauNomFichier = Path.GetFileNameWithoutExtension(nomDuFichier);
+        nouveauNomFichier += "SansCommentaire.cs";
 
         using (StreamReader r = new StreamReader(nomDuFichier))
         {
             string ligne = r.ReadLine();
-
-            while (ligne != null)
+            using (StreamWriter w = new StreamWriter(nouveauNomFichier))
             {
-                if (!ligne.Contains("//"))
+                while (ligne != null)
                 {
-                    using (StreamWriter w = new StreamWriter(nouveauNomDuFichier, true))
+                    if (ligne.Contains("//"))
+                    {
+                        StringBuilder sb = new StringBuilder(ligne);
+
+                        int index = ligne.IndexOf("//");
+
+                        sb.Remove(index, ligne.Length - index);
+                        ligne = sb.ToString();
+                    }
+
+                    ligne = ligne.TrimEnd();
+
+                    if (ligne.Length > 0)
                     {
                         w.WriteLine(ligne);
                     }
+                    ligne = r.ReadLine();
                 }
-                else
-                {
-                    StringBuilder sb = new StringBuilder(ligne);
-
-                    int index = ligne.IndexOf("//");
-                    int index2 = ligne.Length;
-                    sb.Remove(index, index2);
-                    /*
-                    using (StreamWriter w = new StreamWriter(nouveauNomDuFichier, true))
-                    {
-                        w.WriteLine(sb);
-                    }*/
-
-                    Console.WriteLine(ligne.Length);
-                }
-
-                ligne = r.ReadLine();
             }
-
-
         }
 
     }
