@@ -9,8 +9,8 @@ namespace IntroPOO
     {
         static void Main(string[] args)
         {
-            TestRectangle();
-
+            //TestRectangle();
+            TestHorloge();
 
 
             Pause();
@@ -25,18 +25,83 @@ namespace IntroPOO
             r1.Hauteur = -3;
             r1.Nom = "Rectangle 1";
 
-            Console.WriteLine("{0}: Largeur = {1}, Hauteur: {2}, Couleur = {3}, Surface = {4}", r1.Nom, r1.GetLargeur(), r1.Hauteur, r1.Couleur, r1.Surface);
-            // Façon prodécurale
+            r1.AfficherDetails();
             //DessinerRectangle(r1);
-            r1.Dessiner('#');
+            r1.Dessiner('+');
 
-            Console.WriteLine();
             Rectangle r2 = new Rectangle();
             r2.SetLargeur(17);
             r2.Hauteur = 3;
-            Console.WriteLine("{0}: Largeur = {1}, Hauteur: {2}, Couleur = {3}, Surface = {4}", r2.Nom, r2.GetLargeur(), r2.Hauteur, r2.Couleur, r2.Surface);
-            //DessinerRectangle(r2);
+            r2.AfficherDetails(); //DessinerRectangle(r2);
             r2.Dessiner();
+
+            // Un autre objet de type Rectangle
+
+            Rectangle r3 = new Rectangle();
+            r3.AfficherDetails();
+            r3.Dessiner('#');
+
+            Rectangle r4 = new Rectangle(17, 14, "Rectangle 4");
+            r4.AfficherDetails();
+            r4.Dessiner();
+        }
+
+        static void TestHorloge()
+        {
+            Horloge h0 = new Horloge();
+            h0.Afficher(); // 00:00:00
+
+            Horloge h1 = new Horloge(12); // 12:00:00
+            h1.Afficher();
+
+            Horloge h2 = new Horloge(12, 34);
+            h2.Afficher(); // 12:34:00
+
+            Horloge h3 = new Horloge(12, 34, 56);
+            h3.Afficher(); // 12:34:56
+
+
+            Console.WriteLine("Heures de h3: " + h3.Heures); // 12
+            Console.WriteLine("Minutes de h3: " + h3.Minutes); // 34
+            Console.WriteLine("Secondes de h3: " + h3.Secondes); // 56
+
+            // Ne doit pas compiler
+            /*h3.Heures = 1;
+            h3.Minutes = 2;
+            h3.Secondes = 3;*/
+            // ---------
+
+            // L'horloge valide les heures (entre 0 et 23), minutes et les secondes (entre 0 et 59)
+            // Les valeurs invalides sont ignorées silencieusement
+            Horloge h4 = new Horloge(3, -5, 67);
+            h4.Afficher(); // 03:00:00
+
+            Horloge h5 = new Horloge(12, 34, 0);
+            h5.Afficher(); // 12:34:00
+
+            if (h2.EstEgaleA(h5))
+            {
+                Console.WriteLine("h2 est égale à h5"); // Résultat attendu
+            }
+            else
+            {
+                Console.WriteLine("h2 n'est pas égale à h5");
+            }
+
+            if (h2.EstEgaleA(h3))
+            {
+                Console.WriteLine("h2 est égale à h3");
+            }
+            else
+            {
+                Console.WriteLine("h2 n'est pas égale à h3"); // Résultat attendu
+            }
+
+            // !!! Contrainte
+            // La classe horloge ne doit contenir qu'un seul attribut: int _secondes;
+            // Contient la valeur de l'horloge sous la forme d'un nombre total de secondes
+            // 60 secondes dans une minutes, 3600 secondes dans une heure
+
         }
 
         /*

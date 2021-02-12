@@ -8,6 +8,25 @@ namespace IntroPOO
 {
     class Rectangle
     {
+        public Rectangle() // Constructeur par défaut --> sans paramètre
+        {
+            _largeur = 4;
+            _hauteur = 2;
+            Console.WriteLine("Constructeur de Rectangle par défaut");
+        }
+
+        public Rectangle(int largeur, int hauteur, string nom)
+        {
+            //_largeur = largeur;
+            //_hauteur = hauteur;
+
+            // Pour profiter des validations existantes
+            SetLargeur(largeur);
+            Hauteur = hauteur;
+            Nom = nom;
+            Console.WriteLine("Constructeur de Rectangle avec largeur = {0}, hauteur = {1}, nom {2}", largeur, hauteur, nom);
+        }
+
         // Accesseur (getter)
         public int GetLargeur()
         {
@@ -93,14 +112,21 @@ namespace IntroPOO
 
         // Il est possible d'avoir plusieurs méthodes avec le même nom, si les paramètres sont différents
         public void Dessiner()
-        { 
+        {
             // Appelle la version qui prend un caractère
             Dessiner('@');
         }
 
+
+        public void AfficherDetails()
+        {
+            Console.WriteLine("{0}: Largeur = {1}, Hauteur: {2}, Couleur = {3}, Surface = {4}", Nom, _largeur, _hauteur, Couleur, Surface);
+
+        }
+
         private const int MaxLargeur = 80;
 
-        private int _largeur = 0;
-        private int _hauteur = 0;
+        private int _largeur = 1;
+        private int _hauteur = 1;
     }
 }
