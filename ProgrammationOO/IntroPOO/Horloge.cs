@@ -8,52 +8,115 @@ namespace IntroPOO
 {
     class Horloge
     {
+        #region Inutile
+        /*
+        /// <summary>
+        /// Représentation de l'heure du jour
+        /// </summary>
         public Horloge()
         {
-            _secondes = Secondes;
-            Console.WriteLine("trace constructeur horloge sans paramètre");
-
         }
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="heures">Les heures de l'horloge</param>
         public Horloge(int heures)
         {
-            Console.WriteLine("trace constructeur horloge avec paramètre heures");
+            if (heures >= 0 && heures <= 23)
+            {
+                _secondesTotales = heures * SecondesDansHeures;
+            }
         }
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="heures">Les heures de l'horloge</param>
+        /// <param name="minutes">Les minutes de l'horloge</param>
         public Horloge(int heures, int minutes)
         {
-            Console.WriteLine("trace constructeur horloge avec paramètre heures, minutes");
-        }
-        public Horloge(int heures, int minutes, int secondes)
+            if (heures >= 0 && heures <= 23)
+            {
+                _secondesTotales = heures * SecondesDansHeures;
+            }
+
+            if (minutes >= 0 && minutes <= 59)
+            {
+                _secondesTotales += minutes * SecondesDansMinutes;
+            }
+        }*/
+        #endregion
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="heures">Les heures de l'horloge</param>
+        /// <param name="minutes">Les minutes de l'horloge</param>
+        /// <param name="secondes">Les secondes de l'horloge</param>
+        public Horloge(int heures = 0, int minutes = 0, int secondes = 0)
         {
-            Console.WriteLine("trace constructeur horloge avec paramètre heures, minutes, secondes");
+            if (heures >= 0 && heures <= 23)
+            {
+                _secondesTotales = heures * SecondesDansHeures;
+            }
+
+            if (minutes >= 0 && minutes <= 59)
+            {
+                _secondesTotales += minutes * SecondesDansMinutes;
+            }
+            if (secondes >= 0 && secondes <= 59)
+            {
+                _secondesTotales += secondes;
+            }
         }
 
         // Propriétés Horloge
-
+        /// <summary>
+        /// Récupère les valeurs distinctes de l'horloge
+        /// </summary>
         public int Heures
         {
-            get { return _secondes / 3600; }
+            // Accesseur
+            get { return _secondesTotales / SecondesDansHeures; }
+
         }
+        /// <summary>
+        /// Récupère les valeurs distinctes de l'horloge
+        /// </summary>
         public int Minutes
         {
-            get { return _secondes / 60;  }
+            get { return (_secondesTotales % SecondesDansHeures) / SecondesDansMinutes; }
         }
+        /// <summary>
+        /// Récupère les valeurs distinctes de l'horloge
+        /// </summary>
         public int Secondes
         {
-            get { return _secondes; }
+            get { return _secondesTotales % SecondesDansMinutes; }
         }
 
         public void Afficher()
         {
-            Console.WriteLine();
+            Console.WriteLine("{0:D2}:{1:D2}:{2:D2}", Heures, Minutes, Secondes);
         }
 
-        public bool EstEgaleA(Horloge h)
+        /// <summary>
+        /// Compare la valeur de l'horloge avec une autre
+        /// </summary>
+        /// <param name="autreHorloge">L'horloge à comparé</param>
+        /// <returns>Vrai si les horloges sont égales, faux sinon</returns>
+        public bool EstEgaleA(Horloge autreHorloge)
         {
-            return true;
+            // autreHorloge est une référence car c'est un objet. Il faut être prudent de ne pas faire de modification non voulues
+            // autreHorloge._secondesTotales = 123;
+
+            // Le niveau de protection (private) est au niveau de la classe, et non pas de l'objet
+            // Il est donc possible d'accéder aux attributs privés d'un autre objet de la même classe
+            return _secondesTotales == autreHorloge._secondesTotales;
         }
 
+        private int SecondesDansHeures = 3600;
+        private int SecondesDansMinutes = 60;
 
-
-        private int _secondes;
+        // La valeur de l'horloge sous forme d'un nombre total de secondes
+        private int _secondesTotales = 0;
     }
 }

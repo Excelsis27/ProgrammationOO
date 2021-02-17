@@ -10,8 +10,10 @@ namespace IntroPOO
         static void Main(string[] args)
         {
             //TestRectangle();
-            TestHorloge();
+            //TestHorloge();
 
+            SimulateurBanque simulateur = new SimulateurBanque();
+            simulateur.Simuler();
 
             Pause();
         }
@@ -44,6 +46,26 @@ namespace IntroPOO
             Rectangle r4 = new Rectangle(17, 14, "Rectangle 4");
             r4.AfficherDetails();
             r4.Dessiner();
+
+
+            // r4 sera modifié par la méthode
+            ModifierRectangle(r4);
+            Console.WriteLine("Après l'appel de ModifierRectangle");
+            r4.AfficherDetails();
+            r4.Dessiner();
+        }
+
+        static void ModifierRectangle(Rectangle r)
+        {
+            // Un objet (variable de type d'une classe) sera toujours considérée comme une référence, même si 'ref' n'est pas spécifié
+            r.SetLargeur(3);
+            r.Hauteur = 4;
+
+            // Un objet n'est crée que lorsque l'instruction 'new' est appelée. autreRectangle est référence sur r (lui même une référence sur r4)
+            // car un nouvel objet n'a pas été créé avec 'new'
+            Rectangle autreRectangle = r;
+            autreRectangle.SetLargeur(22);
+            autreRectangle.Hauteur = 18;
         }
 
         static void TestHorloge()
@@ -98,7 +120,7 @@ namespace IntroPOO
             }
 
             // !!! Contrainte
-            // La classe horloge ne doit contenir qu'un seul attribut: int _secondes;
+            // La classe horloge ne doit contenir qu'un seul attribut: int _secondesTotales;
             // Contient la valeur de l'horloge sous la forme d'un nombre total de secondes
             // 60 secondes dans une minutes, 3600 secondes dans une heure
 
@@ -116,6 +138,8 @@ namespace IntroPOO
                 Console.WriteLine();
             }
         }*/
+
+
 
         static void Pause()
         {
