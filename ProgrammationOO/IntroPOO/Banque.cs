@@ -10,6 +10,8 @@ namespace IntroPOO
     {
         public Banque(string nomFichier)
         {
+            _nomFichier = nomFichier;
+            // On conserve le nom du fichier pour la sauvegarde
             using (StreamReader fichierLecture = new StreamReader(nomFichier))
             {
                 // Pas de traitement d'erreur, le fichier contiendra toujours 5 lignes valides
@@ -27,7 +29,12 @@ namespace IntroPOO
             foreach (CompteBancaire item in _comptes)
             {
                 item.Afficher();
+                // Une méthode statique ne peut pas s'utiliser avec un objet
+                // item.DernierNumero();
             }
+
+            // Méthode statiques, s'utilise avec une classe
+            Console.WriteLine("Dernier numéro de compte utilisé: " + CompteBancaire.DernierNumero()); ;
         }
         public void AfficherSolde(string nomCompte)
         {
@@ -58,6 +65,13 @@ namespace IntroPOO
         }
         public void Sauvegarder()
         {
+            using (StreamWriter fichierEcriture = new StreamWriter(_nomFichier))
+            {
+                foreach (CompteBancaire item in _comptes)
+                {
+                    fichierEcriture.WriteLine(item.SauvegardeFichier());
+                }
+            }
         }
 
         // Méthode privée car uniquement utilisée par la classe
@@ -90,5 +104,6 @@ namespace IntroPOO
         //   ...
         //   _comptes[4] = new CompteBancaire(...);
         private CompteBancaire[] _comptes = new CompteBancaire[NbComptes]; // 5 comptes à null
+        private string _nomFichier;
     }
 }

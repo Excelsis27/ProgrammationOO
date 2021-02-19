@@ -6,17 +6,60 @@ using System.Threading.Tasks;
 
 namespace IntroPOO
 {
+    /// <summary>
+    /// Tous les types de comptes possibles
+    /// </summary>
+    enum TypeCompte
+    { 
+        Cheque,
+        Epargne
+    }
+
+    /// <summary>
+    /// Représentation d'un compte contenu dans la banque
+    /// </summary>
     class CompteBancaire
     {
+        //private const int Cheque = 0;
+        //private const int Epargne = 1; // Les valeurs doivent être différentes
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="ligneFichier">La ligne lue du fichier</param>
         public CompteBancaire(string ligneFichier)
         {
             string[] elements = ligneFichier.Split(';');
 
-            _type = elements[0];
+            switch (elements[0])
+            {
+                case "Cheque":
+                    _type = TypeCompte.Cheque;
+                    break;
+                case "Epargne":
+                    _type = TypeCompte.Epargne;
+                    break;
+                    // Pour l'instant, on ne gère pas les erreurs
+            }
+
             _nom = elements[1]; // readonly, doit être initialisé dans le constructeur
             _solde = Convert.ToDouble(elements[2]);
+
+            // Le numéro doît être unique, 2 comptes ne doivent pas avoir le même
+            // On incrémente le dernier numéro, et on utilise cette valeur
+            _numero = ++_dernierNumero;
         }
+
+        /// <summary>
+        /// Accesseur du dernier numéro
+        /// </summary>
+        /// <returns>Retourne le dernier numéro utilisé</returns>
+        public static int DernierNumero()
+        {
+            // return _numero; Invalide, ne peut pas utiliser d'attribut non static'
+            return _dernierNumero;
+        }
+
         /// <summary>
         /// Affiche l'imformation du compte
         /// </summary>
@@ -24,7 +67,7 @@ namespace IntroPOO
         {
             // Impossible de modifier un attribut readonly
             // _nom = "Nouveau nom";
-            Console.WriteLine("Compte {0}: {1}", _type, _nom);
+            Console.WriteLine("Compte {0} ({1}): {2}", _type, _numero, _nom);
         }
 
         /// <summary>
@@ -75,9 +118,29 @@ namespace IntroPOO
             }
         }
 
+        /// <summary>
+        /// Prépare l'information du compte pour la sauvegarde dans un fichier
+        /// </summary>
+        /// <returns>Ligne décrivant  le compte à écrire dans le fichier</returns>
+        public string SauvegardeFichier()
+        {
+            // Doit être symétrique à la lecture. On effectue l'opération inversion du constructeur
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendFormat("{0};{1};{2}", _type, _nom, _solde);
+
+            return sb.ToString();
+        }
+
+        // Pour assigner un numéro unique à chaque compte
+        private static int _dernierNumero = 1000;
+
         // Le type et le nom ne peuvent pas être modifiés après la construction de l'objet
-        private readonly string _type;
+        private readonly TypeCompte _type;
         private readonly string _nom;
         private double _solde;
+        // Numéro qui identifie le compte de manière unique
+        private readonly int _numero;
     }
 }

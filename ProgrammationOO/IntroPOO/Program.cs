@@ -141,7 +141,7 @@ namespace IntroPOO
 
 
 
-        static void Pause()
+        public static void Pause()
         {
             Console.Write("Appuyez sur une touche pour continuer...");
             Console.ReadKey(true);
