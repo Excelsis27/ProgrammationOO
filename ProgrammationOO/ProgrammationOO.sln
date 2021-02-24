@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroACSharp", "IntroACShar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroPOO", "IntroPOO\IntroPOO.csproj", "{39C811B9-BBEB-4FA8-AC31-FADD41D7C0C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heritage", "Heritage\Heritage.csproj", "{CDAE992C-2059-4333-AEE7-5A6AE11CA076}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{39C811B9-BBEB-4FA8-AC31-FADD41D7C0C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39C811B9-BBEB-4FA8-AC31-FADD41D7C0C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39C811B9-BBEB-4FA8-AC31-FADD41D7C0C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDAE992C-2059-4333-AEE7-5A6AE11CA076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDAE992C-2059-4333-AEE7-5A6AE11CA076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDAE992C-2059-4333-AEE7-5A6AE11CA076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDAE992C-2059-4333-AEE7-5A6AE11CA076}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

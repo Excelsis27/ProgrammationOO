@@ -12,8 +12,12 @@ namespace IntroPOO
             //TestRectangle();
             //TestHorloge();
 
-            SimulateurBanque simulateur = new SimulateurBanque();
-            simulateur.Simuler();
+            //SimulateurBanque simulateur = new SimulateurBanque();
+            //simulateur.Simuler();
+
+            //TestAleatoire();
+
+            TestVar();
 
             Pause();
         }
@@ -139,7 +143,43 @@ namespace IntroPOO
             }
         }*/
 
+        static void TestAleatoire()
+        {
+            // Va s'initialiser en se basant sur l'horloge
+            Random generateurAleatoire = new Random();
 
+            Console.WriteLine("Cing nombres aléatoires");
+
+            for (int i = 0; i < 5; ++i)
+            {
+                // Génère entre 1 et 7 non-inclut (1~6, dés)
+                Console.WriteLine(generateurAleatoire.Next(1,7));
+            }
+        }
+
+        static void TestVar()
+        {
+            // Déclaration d'une variable avec le mot clé 'var'
+            // Le compilateur va déterminer le type de la variable
+            var r = new Rectangle();
+            // Identique à: Rectangle r = new Rectangle();
+
+            // Impossible d'utiliser 'var sans initialisation
+            // Le compilateur ne peut pas déterminer le type
+            //var x;
+            //x = new Rectangle();
+
+            // Bien qu'il soit possible de le faire, la norme de programmation préfère ne pas utiliser 'var' pour lese types de base
+            var entier = 5;     // int, long, uint ? ? ?
+            var reel = 3.14;    // float, double, decimal ? ? ?
+
+            int[] tableau = { 1, 2, 3 };
+            // Puisque le tableau contient des int, item est de type int
+            foreach (var item in tableau)
+            {
+                Console.WriteLine(item);
+            }
+        }
 
         public static void Pause()
         {
