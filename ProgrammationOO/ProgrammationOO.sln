@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroPOO", "IntroPOO\IntroP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heritage", "Heritage\Heritage.csproj", "{CDAE992C-2059-4333-AEE7-5A6AE11CA076}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exception", "Exception\Exception.csproj", "{D20F2658-C9E4-4D7C-BB79-1292230C174F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CDAE992C-2059-4333-AEE7-5A6AE11CA076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDAE992C-2059-4333-AEE7-5A6AE11CA076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDAE992C-2059-4333-AEE7-5A6AE11CA076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D20F2658-C9E4-4D7C-BB79-1292230C174F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D20F2658-C9E4-4D7C-BB79-1292230C174F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D20F2658-C9E4-4D7C-BB79-1292230C174F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D20F2658-C9E4-4D7C-BB79-1292230C174F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

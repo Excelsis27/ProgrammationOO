@@ -26,9 +26,16 @@ namespace Heritage
         public string Nom { get; set; }
         public int Age { get; set; }
 
+        public string NumeroTelephone { get; protected set; }
+
         public void DireBonjour()
         {
             Console.WriteLine("Bonjour, je m'appelle {0} {1}, j'ai {2} ans.", Prenom, Nom, Age);
         }
+
+        // Protected est entre public et privé, pour donner accès aux classes dérivées
+        protected string _adresse;
+
+        private string _numeroAssuranceMaladie;
     }
 }

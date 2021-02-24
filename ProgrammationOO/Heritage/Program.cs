@@ -14,6 +14,9 @@ namespace Heritage
             p1.Prenom = "Alphonse";
             p1.Nom = "Cloutier";
             p1.Age = 42;
+            // Protected n'est pas accessible de l'extérieur
+            // p1._addresse = "123 Turbo";
+
             Console.WriteLine("Personne 1: Prénom = {0}, Nom = {1}, Age = {2}", p1.Prenom, p1.Nom, p1.Age);
             p1.DireBonjour();
 
@@ -33,6 +36,17 @@ namespace Heritage
 
             Etudiant e2 = new Etudiant("Bob", "Roy", 17, 123561);
             e2.DireBonjour();
+
+
+            Enseignant en1 = new Enseignant();
+            en1.Prenom = "Joel";
+            en1.Nom = "Beaudet";
+            en1.Age = 42;
+            en1.DireBonjour();
+
+            Console.WriteLine();
+            Enseignant en2 = new Enseignant("Martin", "Matt", 49, 12345, "Humour");
+            en2.DireInformationEnseignant();
 
             Console.WriteLine("Appuyez sur uen touche pour continuer...");
             Console.ReadKey(true);

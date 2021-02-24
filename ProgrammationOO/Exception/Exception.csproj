@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CDAE992C-2059-4333-AEE7-5A6AE11CA076}</ProjectGuid>
+    <ProjectGuid>{D20F2658-C9E4-4D7C-BB79-1292230C174F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Heritage</RootNamespace>
-    <AssemblyName>Heritage</AssemblyName>
+    <RootNamespace>Exceptions</RootNamespace>
+    <AssemblyName>Exceptions</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,9 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employe.cs" />
-    <Compile Include="Etudiant.cs" />
-    <Compile Include="Personne.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
