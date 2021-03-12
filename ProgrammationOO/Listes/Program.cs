@@ -12,7 +12,9 @@ namespace Listes
         {
             //TestListeEntiers();
             //TestListeStrings();
-            TestListeDates();
+            //TestListeDates();
+            //TestListePersonnes();
+            TestFile();
 
             Pause();
         }
@@ -146,6 +148,36 @@ namespace Listes
                 Console.WriteLine(" Date courte: " + date.ToShortDateString());
                 Console.WriteLine(" Date longue: " + date.ToLongDateString());
                 listeDate.Add(date);
+
+                if (date == aujourdhui)
+                {
+                    Console.WriteLine("C'est la date d'aujourd'hui");
+                }
+                else if (date < aujourdhui)
+                {
+                    TimeSpan diff = aujourdhui - date;
+                    Console.WriteLine("C'est une date passée de {0} jour", diff.Days);
+                }
+                else
+                {
+                    TimeSpan diff = date - aujourdhui;
+                    Console.WriteLine("C'est une date future de {0} heures", diff.TotalHours);
+                }
+
+                if(DateTime.IsLeapYear(date.Year))
+                {
+                    Console.WriteLine("{0} est une année bissextile.", date.Year);
+                }
+
+                Console.WriteLine("Le mois de {0} compte {1} jours", date.ToString("M"), DateTime.DaysInMonth(date.Year, date.Month));
+
+                Console.Write("Indiquez une date et une heure (A/M/J H:M:S): ");
+                date = Convert.ToDateTime(Console.ReadLine());
+                Console.WriteLine(" Date courte: " + date.ToShortDateString());
+                Console.WriteLine(" Date longue: " + date.ToLongDateString());
+                Console.WriteLine(" Heure courte: " + date.ToShortTimeString());
+                Console.WriteLine(" Heure longue: " + date.ToLongTimeString());
+                listeDate.Add(date);
             }
             catch (Exception e)
             {
@@ -158,6 +190,102 @@ namespace Listes
             {
                 Console.WriteLine(item);
             }
+        }
+
+        static void TestListePersonnes()
+        {
+            List<Personne> listePersonnes = new List<Personne>();
+
+            listePersonnes.Add(new Personne("Andre", "Lapointe", 32));
+            listePersonnes.Add(new Personne("Melissa", "Hemond", 42));
+            listePersonnes.Add(new Personne("Monique", "Lapointe", 62));
+
+            // faute d'ortographe
+            Personne donatien = new Personne("Donatn", "Dallaire", 52);
+            // On ajoute une RÉFÉRENCE à l'objet dans la liste
+            listePersonnes.Add(donatien);
+
+            foreach (var item in listePersonnes)
+            {
+                item.Afficher();
+            }
+
+            // Modification de la variable donatien
+            donatien.Prenom = "Donatien";
+
+            Console.WriteLine("-------------------");
+
+            foreach (var item in listePersonnes)
+            {
+                item.Afficher();
+            }
+
+            // On va retrouver le même objet dans la liste
+            if (listePersonnes.Contains(donatien))
+            {
+                Console.WriteLine("***Donatien est parmis nous");
+            }
+            else
+            {
+                Console.WriteLine("Donatien nous a pas encore rejoin");
+            }
+
+            Personne donatien2 = new Personne("Donatien", "Dallaire", 52);
+
+            // On ne retrouvera pas un autre objet, même si les valeurs sont identiques
+            if (listePersonnes.Contains(donatien2))
+            {
+                Console.WriteLine("Donatien2 est parmis nous");
+            }
+            else
+            {
+                Console.WriteLine("***Donatien2 nous a pas encore rejoin");
+            }
+
+            try
+            {
+                // Le tri ne va pas fonctionner
+                // Comment comparer : Par nom? Par prénom? Par âge? ...
+                listePersonnes.Sort();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        static void TestFile()
+        {
+            // Une file est une structure dans laquelle il n'est possible d'ajouter des éléments qu'à la fin et de les retirer qu'au début
+            // Exemple: une file d'attente
+            Queue<string> clients = new Queue<string>();
+
+            // Enqueue = Enfiler: ajoute à la fin de la file (comme Add pour une liste)
+            clients.Enqueue("Jonathan");
+            clients.Enqueue("André");
+            clients.Enqueue("Alex");
+
+            AfficherFile(clients);
+
+            Console.WriteLine("Le client en tête de liste est: " + clients.Peek());
+
+            // Dequeue = Défiler, enlève au début de la file
+            string clientAServir = clients.Dequeue();
+            Console.WriteLine("On sert le client: " + clientAServir);
+
+            AfficherFile(clients);
+        }
+
+        static void AfficherFile(Queue<string> s)
+        {
+
+            Console.WriteLine("------------------");
+            Console.WriteLine("Taille de la file: " + s.Count);
+            foreach (var item in s)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("------------------");
         }
 
         static void Pause()
