@@ -14,7 +14,10 @@ namespace Listes
             //TestListeStrings();
             //TestListeDates();
             //TestListePersonnes();
-            TestFile();
+            //TestFile();
+            //TestPile();
+            //Exercices.TestDeplacement();
+            Exercices.TestEtudiants();
 
             Pause();
         }
@@ -42,7 +45,7 @@ namespace Listes
             }
 
             Console.WriteLine("Premier élément: " + listeEntiers[0]);
-            Console.WriteLine("Dernier élément: " + listeEntiers[listeEntiers.Count- 1]);
+            Console.WriteLine("Dernier élément: " + listeEntiers[listeEntiers.Count - 1]);
             listeEntiers[2] = 100;
 
 
@@ -164,7 +167,7 @@ namespace Listes
                     Console.WriteLine("C'est une date future de {0} heures", diff.TotalHours);
                 }
 
-                if(DateTime.IsLeapYear(date.Year))
+                if (DateTime.IsLeapYear(date.Year))
                 {
                     Console.WriteLine("{0} est une année bissextile.", date.Year);
                 }
@@ -274,6 +277,18 @@ namespace Listes
             Console.WriteLine("On sert le client: " + clientAServir);
 
             AfficherFile(clients);
+
+            Console.WriteLine("Dolorès arrive dans la file");
+            clients.Enqueue("Dolorès");
+            AfficherFile(clients);
+
+            clientAServir = clients.Dequeue();
+            Console.WriteLine("On sert maintenant: " + clientAServir);
+            AfficherFile(clients);
+
+            // On utilise une fille lorsqu'on doit conserver l'ordre des éléments tel qu'ils ont été ajoutés
+
+            // Premier arriver, premier servi. (FIFO, first in, first out)
         }
 
         static void AfficherFile(Queue<string> s)
@@ -286,6 +301,44 @@ namespace Listes
                 Console.WriteLine(item);
             }
             Console.WriteLine("------------------");
+        }
+
+        static void TestPile()
+        {
+            // Une pile est une structure dans laquelle il n'est possible d'ajouter et de retirer des éléments qu'au début
+            // Exemple: une pile d'assiettes
+
+            Stack<CarteAJouer> cartes = new Stack<CarteAJouer>();
+
+            // Push ajoute un élément sur le dessus de la pile
+            cartes.Push(new CarteAJouer(2, Suite.Carreau));
+            cartes.Push(new CarteAJouer(10, Suite.Trefle));
+            cartes.Push(new CarteAJouer(13, Suite.Pique));
+            cartes.Push(new CarteAJouer(1, Suite.Coeur));
+            cartes.Push(new CarteAJouer(6, Suite.Trefle));
+
+            foreach (var item in cartes)
+            {
+                Console.WriteLine(item.Description);
+            }
+
+            Console.WriteLine("La carte sur le dessus du paquet: " + cartes.Peek().Description);
+
+            // Pop enlève un élément du dessus de la pile
+            CarteAJouer uneCarte = cartes.Pop();
+
+            Console.WriteLine("Carte prise sur le dessus du paquet: " + uneCarte.Description);
+
+            uneCarte = cartes.Pop();
+
+            Console.WriteLine("Prochaine carte prise sur le dessus du paquet: " + uneCarte.Description);
+
+            Console.WriteLine("Ajoute une carte sur la pile");
+            cartes.Push(new CarteAJouer(7, Suite.Pique));
+            Console.WriteLine("La carte sur le dessus du paquet: " + cartes.Peek().Description);
+
+            // Dernier arrivé, premier servi (LIFO: last in, first out)
+            // Exemple: Flèche au backgammon
         }
 
         static void Pause()
