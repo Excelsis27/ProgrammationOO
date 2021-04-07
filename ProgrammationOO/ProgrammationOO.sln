@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exception", "Exception\Exce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Listes", "Listes\Listes.csproj", "{C1A43876-F785-489A-9E74-A33991AF628C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uml", "Uml\Uml.csproj", "{A0C58584-B447-4E42-B26B-F931EAA2EFF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debogueur", "Debogueur\Debogueur.csproj", "{0950E97B-B1EE-4EEE-9BE9-40A72EBFCD63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{C1A43876-F785-489A-9E74-A33991AF628C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1A43876-F785-489A-9E74-A33991AF628C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1A43876-F785-489A-9E74-A33991AF628C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C58584-B447-4E42-B26B-F931EAA2EFF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C58584-B447-4E42-B26B-F931EAA2EFF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C58584-B447-4E42-B26B-F931EAA2EFF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C58584-B447-4E42-B26B-F931EAA2EFF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0950E97B-B1EE-4EEE-9BE9-40A72EBFCD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0950E97B-B1EE-4EEE-9BE9-40A72EBFCD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0950E97B-B1EE-4EEE-9BE9-40A72EBFCD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0950E97B-B1EE-4EEE-9BE9-40A72EBFCD63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
